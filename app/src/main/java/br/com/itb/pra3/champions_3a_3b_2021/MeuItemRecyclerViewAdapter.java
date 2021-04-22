@@ -75,8 +75,12 @@ public class MeuItemRecyclerViewAdapter extends
                 // Implementar exclusão do item solicitado
                 long resultado = mBanco.delete("Time", "_id = ?", args);
 
-                if(resultado > 0)
+                if(resultado > 0) {
                     Snackbar.make(v, "TIME EXCLUÍDO", Snackbar.LENGTH_LONG).show();
+
+                    // Informa ao RecyclerView (lista) que o item foi excluído e faz o refresh
+                    notifyItemRemoved(position);
+                }
                 else
                     Snackbar.make(v, "ERRO AO EXCLUIR", Snackbar.LENGTH_LONG).show();
 
